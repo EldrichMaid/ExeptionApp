@@ -35,6 +35,26 @@
             Console.WriteLine(a + b);
         }
 
+        static void ShowMessage()
+        {
+            Console.WriteLine("'Sup,World!");
+        }
+
+        static int Summarize(int a, int b, int c)
+        {
+            return a + b + c;
+        }
+
+        static bool CheckLength(string _row)
+        {
+            if (_row.Length > 3) return true;
+            return false;
+        }
+
+        delegate void ShowMessageDelegate();
+        delegate int SummarizeDelegate(int a, int b, int c);
+        delegate bool CheckLengthDelegate(string row);
+
         static void Main()
         {
             Exception exception = new Exception();
@@ -85,7 +105,18 @@
             calcDelegate += Add;
             calcDelegate -= Add;
             calcDelegate.Invoke(100, 50);
-            
+
+            ShowMessageDelegate showMessageDelegate = ShowMessage;
+            showMessageDelegate.Invoke();
+
+            SummarizeDelegate summarizeDelegate = Summarize;
+            int SummarizedResult = sumDelegate.Invoke(1, 20, 300);
+            Console.WriteLine(SummarizedResult);
+
+            CheckLengthDelegate checkLengthDelegate = CheckLength;
+            bool status = checkLengthDelegate.Invoke("Ataraxis");
+            Console.WriteLine(status);
+
 
             Console.ReadKey();            
         }
