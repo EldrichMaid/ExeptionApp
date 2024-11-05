@@ -15,6 +15,8 @@
         {
             Exception exception = new Exception();
             exception.Data.Add("Дата исключения : ", DateTime.Now);
+
+            Exception AnotherException = new("Собственное исключения") {HelpLink = "www.google.com"};
         }
     }
 }
