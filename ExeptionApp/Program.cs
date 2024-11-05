@@ -28,9 +28,10 @@
 
                 Console.WriteLine(result);
             }
-            catch (System.DivideByZeroException)
+            catch (Exception ex)
             {
-                Console.WriteLine("На ноль делить нельзя!");
+                if (ex is DivideByZeroException) Console.WriteLine("На ноль делить нельзя!");
+                else Console.WriteLine("Произошла непредвиденная ошибка в приложении.");
             }
             finally
             {
