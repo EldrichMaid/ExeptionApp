@@ -50,7 +50,7 @@
 
             try
             {
-                throw new RankException("Сообщение об ошибке");
+                throw new RankException("Rank error thrown");
             }
 
             catch (RankException ex)
