@@ -106,14 +106,14 @@
             calcDelegate -= Add;
             calcDelegate.Invoke(100, 50);
 
-            ShowMessageDelegate showMessageDelegate = ShowMessage;
+            Action showMessageDelegate = ShowMessage;
             showMessageDelegate.Invoke();
 
-            SummarizeDelegate summarizeDelegate = Summarize;
-            int SummarizedResult = sumDelegate.Invoke(1, 20, 300);
-            Console.WriteLine(SummarizedResult);
+            Func<int, int, int, int> SummarizeDelegate = Sum; // Первые три параметра - входные,последний - выходной.
+            int SumarizedResult = SummarizeDelegate.Invoke(1, 30, 120);
+            Console.WriteLine(SumarizedResult);
 
-            CheckLengthDelegate checkLengthDelegate = CheckLength;
+            Predicate<string> checkLengthDelegate = CheckLength; // Только один параметр на вход и один bool на выход.
             bool status = checkLengthDelegate.Invoke("Ataraxis");
             Console.WriteLine(status);
 
