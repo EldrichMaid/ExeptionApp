@@ -55,6 +55,8 @@
         delegate int SummarizeDelegate(int a, int b, int c);
         delegate bool CheckLengthDelegate(string row);
 
+        delegate void GreatTheWorld(string _message);
+
         static void Main()
         {
             Exception exception = new Exception();
@@ -116,6 +118,12 @@
             Predicate<string> checkLengthDelegate = CheckLength; // Только один параметр на вход и один bool на выход.
             bool status = checkLengthDelegate.Invoke("Ataraxis");
             Console.WriteLine(status);
+
+            GreatTheWorld Greatings = delegate (string _message)
+            {
+                Console.WriteLine(_message);
+            };
+            Greatings.Invoke("Hello World!");
 
 
             Console.ReadKey();            
