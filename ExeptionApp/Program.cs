@@ -129,6 +129,12 @@
             int RandomResult = randomNumberDelegate.Invoke();
             Console.WriteLine(RandomResult);
 
+            GreatTheWorld GreatAsLabda = (string _message) =>
+            {
+                Console.WriteLine(_message);
+            };
+            GreatAsLabda.Invoke("Hello World!");
+
 
             Console.ReadKey();            
         }
