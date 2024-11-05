@@ -83,6 +83,7 @@
 
             DelegatedCalculation calcDelegate = Subtract;
             calcDelegate += Add;
+            calcDelegate -= Add;
             calcDelegate.Invoke(100, 50);
             
 
