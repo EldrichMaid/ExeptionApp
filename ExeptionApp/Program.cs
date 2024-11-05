@@ -38,6 +38,26 @@
                 Console.WriteLine("Блок Finally сработал!");
             }
 
+            try
+            {
+                throw new ArgumentOutOfRangeException("Argument out of range error thrown");
+            }
+
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                throw new RankException("Сообщение об ошибке");
+            }
+
+            catch (RankException ex)
+            {
+                Console.WriteLine(ex.GetType());
+            }
+
             Console.ReadKey();            
         }
     }
