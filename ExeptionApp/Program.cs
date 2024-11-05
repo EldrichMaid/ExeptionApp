@@ -24,12 +24,10 @@
         }
 
         delegate void DelegatedCalculation(int a, int b);
-
         static void Subtract(int a, int b)
         {
             Console.WriteLine(a - b);
         }
-
         static void Add(int a, int b)
         {
             Console.WriteLine(a + b);
@@ -39,23 +37,22 @@
         {
             Console.WriteLine("'Sup,World!");
         }
-
         static int Summarize(int a, int b, int c)
         {
             return a + b + c;
         }
-
         static bool CheckLength(string _row)
         {
             if (_row.Length > 3) return true;
             return false;
         }
-
         delegate void ShowMessageDelegate();
         delegate int SummarizeDelegate(int a, int b, int c);
         delegate bool CheckLengthDelegate(string row);
 
         delegate void GreatTheWorld(string _message);
+      
+        delegate int RandomNumberDelegate();
 
         static void Main()
         {
@@ -124,6 +121,13 @@
                 Console.WriteLine(_message);
             };
             Greatings.Invoke("Hello World!");
+
+            RandomNumberDelegate randomNumberDelegate = delegate
+            {
+                return new Random().Next(0, 100);
+            };
+            int RandomResult = randomNumberDelegate.Invoke();
+            Console.WriteLine(RandomResult);
 
 
             Console.ReadKey();            
