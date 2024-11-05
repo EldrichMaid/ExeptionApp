@@ -9,6 +9,10 @@
             : base(message)
         { }
     }
+
+    class Car { }
+    class Lexus : Car { }
+
     internal class Program
     {
         static int Division(int a, int b)
@@ -53,6 +57,16 @@
         delegate void GreatTheWorld(string _message);
       
         delegate int RandomNumberDelegate();
+
+        public delegate Car CovariantDelegation();
+        public static Car CarMethod()
+        {
+            return null;
+        }
+        public static Lexus LexusMethod()
+        {
+            return null;
+        }
 
         static void Main()
         {
@@ -141,6 +155,8 @@
             };
             int LambdaResult = RandomDelegateAsLambda.Invoke();
             Console.WriteLine(LambdaResult);
+
+            CovariantDelegation Lexus = LexusMethod;
 
 
             Console.ReadKey();            
