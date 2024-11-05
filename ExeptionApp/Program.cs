@@ -67,6 +67,12 @@
         {
             return null;
         }
+        public delegate Car ContrvariantDelegation();
+        delegate void LexusInfo(Lexus lexus);
+        public static void GetCarInfo(Car c)
+        {
+            Console.WriteLine(c.GetType());
+        }
 
         static void Main()
         {
@@ -157,6 +163,9 @@
             Console.WriteLine(LambdaResult);
 
             CovariantDelegation Lexus = LexusMethod;
+
+            LexusInfo lexusInfo = GetCarInfo;
+            lexusInfo.Invoke(new Lexus());
 
 
             Console.ReadKey();            
