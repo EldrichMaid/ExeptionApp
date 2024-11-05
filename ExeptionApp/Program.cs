@@ -129,11 +129,18 @@
             int RandomResult = randomNumberDelegate.Invoke();
             Console.WriteLine(RandomResult);
 
-            GreatTheWorld GreatAsLabda = (string _message) =>
+            GreatTheWorld GreatAsLambda = (string _message) =>
             {
                 Console.WriteLine(_message);
             };
-            GreatAsLabda.Invoke("Hello World!");
+            GreatAsLambda.Invoke("Hello World!");
+
+            RandomNumberDelegate RandomDelegateAsLambda = () =>
+            {
+                return new Random().Next(0, 100);
+            };
+            int LambdaResult = RandomDelegateAsLambda.Invoke();
+            Console.WriteLine(LambdaResult);
 
 
             Console.ReadKey();            
