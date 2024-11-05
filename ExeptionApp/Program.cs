@@ -13,7 +13,8 @@
     {
         static void Main()
         {
-            
+            Exception exception = new Exception();
+            exception.Data.Add("Дата исключения : ", DateTime.Now);
         }
     }
 }
