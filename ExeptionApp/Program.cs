@@ -23,6 +23,13 @@
             return a + b + c;
         }
 
+        delegate int DelegatedSubtraction(int a, int b);
+
+        static int Subtract(int a, int b)
+        {
+            return a - b;
+        }
+
         static void Main()
         {
             Exception exception = new Exception();
@@ -68,6 +75,10 @@
 
             SumDelegate sumDelegate = Sum;
             sumDelegate.Invoke(1, 10, 50);
+
+            DelegatedSubtraction calcDelegate = Subtract;
+            int SubtractionResult = calcDelegate.Invoke(100, 50);
+            Console.WriteLine(SubtractionResult);
 
             Console.ReadKey();            
         }
