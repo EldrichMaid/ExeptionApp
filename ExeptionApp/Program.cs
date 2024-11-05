@@ -77,8 +77,10 @@
             sumDelegate.Invoke(1, 10, 50);
 
             DelegatedSubtraction calcDelegate = Subtract;
-            int SubtractionResult = calcDelegate.Invoke(100, 50);
+            int SubtractionResult = calcDelegate(100, 50);
             Console.WriteLine(SubtractionResult);
+            int SubtractionInvokation = calcDelegate.Invoke(100, 50);
+            Console.WriteLine(SubtractionInvokation);
 
             Console.ReadKey();            
         }
