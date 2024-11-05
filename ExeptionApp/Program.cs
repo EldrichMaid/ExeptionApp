@@ -23,11 +23,16 @@
             return a + b + c;
         }
 
-        delegate int DelegatedSubtraction(int a, int b);
+        delegate void DelegatedCalculation(int a, int b);
 
-        static int Subtract(int a, int b)
+        static void Subtract(int a, int b)
         {
-            return a - b;
+            Console.WriteLine(a - b);
+        }
+
+        static void Add(int a, int b)
+        {
+            Console.WriteLine(a + b);
         }
 
         static void Main()
@@ -76,11 +81,10 @@
             SumDelegate sumDelegate = Sum;
             sumDelegate.Invoke(1, 10, 50);
 
-            DelegatedSubtraction calcDelegate = Subtract;
-            int SubtractionResult = calcDelegate(100, 50);
-            Console.WriteLine(SubtractionResult);
-            int SubtractionInvokation = calcDelegate.Invoke(100, 50);
-            Console.WriteLine(SubtractionInvokation);
+            DelegatedCalculation calcDelegate = Subtract;
+            calcDelegate += Add;
+            calcDelegate.Invoke(100, 50);
+            
 
             Console.ReadKey();            
         }
