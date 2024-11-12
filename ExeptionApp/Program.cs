@@ -13,6 +13,21 @@
     class Car { }
     class Lexus : Car { }
 
+    public delegate void Notify();  // делегат
+    public class ProcessBusinessLogic
+    {
+        public event Notify ProcessCompleted; // событие
+        public void StartProcess()
+        {
+            Console.WriteLine("Процесс начат!");
+            OnProcessCompleted();
+        }
+        protected virtual void OnProcessCompleted() //protected virtual method
+        {
+            ProcessCompleted?.Invoke();
+        }
+    }
+
     internal class Program
     {
         static int Division(int a, int b)
@@ -72,6 +87,11 @@
         public static void GetCarInfo(Car c)
         {
             Console.WriteLine(c.GetType());
+        }
+       
+        public static void bl_ProcessCompleted() // перехватчик событий
+        {
+            Console.WriteLine("Процесс завершён!");
         }
 
         static void Main()
@@ -167,6 +187,9 @@
             LexusInfo lexusInfo = GetCarInfo;
             lexusInfo.Invoke(new Lexus());
 
+            ProcessBusinessLogic bl = new ProcessBusinessLogic();
+            bl.ProcessCompleted += bl_ProcessCompleted; // регистрируем событие
+            bl.StartProcess();
 
             Console.ReadKey();            
         }
