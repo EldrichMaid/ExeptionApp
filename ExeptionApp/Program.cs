@@ -27,6 +27,27 @@
         }
     }
 
+    class SorterEventManager
+    {
+        public delegate void InputDelegate(int InputNumber);
+        public event InputDelegate InputEvent;
+        public void Input()
+        {
+            Console.WriteLine("Enter 1 or 2 to do the doo.");
+            int InputNumber = Convert.ToInt32(Console.ReadLine());
+            if (InputNumber != 1 && InputNumber !=2) 
+            { 
+                throw new FormatException(); 
+            }           
+            InputDone(InputNumber);
+        }
+
+        protected virtual void InputDone(int InputNumber) 
+        { 
+            InputEvent?.Invoke(InputNumber); 
+        }
+    }
+
     internal class Program
     {
         static int Division(int a, int b)
@@ -133,6 +154,31 @@
             }
         }
 
+        static void SortItAsIWant(int InputNumber) 
+        {
+            string[] SortedArray = {"Smith","Tanaka","Kravitz","Bannikov","Mbowe","Carlos","Yun"};
+            Array.Sort(SortedArray);
+            switch (InputNumber)
+            { 
+                case 1: 
+                    {
+                        for (int i = SortedArray.GetLowerBound(0); i<=SortedArray.GetUpperBound(0); i++)
+                        { 
+                            Console.WriteLine($"{SortedArray[i]}"); 
+                        }
+                    } 
+                    break;
+                case 2: 
+                    {
+                        for (int i = SortedArray.GetUpperBound(0); i >= SortedArray.GetLowerBound(0); i--)
+                        {
+                            Console.WriteLine($"{SortedArray[i]}");
+                        }
+                    } 
+                    break;
+            }
+        }
+
         static void Main()
         {
             Exception exception = new Exception();
@@ -199,7 +245,7 @@
             {
                 Console.WriteLine(_message);
             };
-            Greatings.Invoke("Hello World!");
+            Greatings.Invoke("Hello,World!");
 
             RandomNumberDelegate randomNumberDelegate = delegate
             {
@@ -212,7 +258,7 @@
             {
                 Console.WriteLine(_message);
             };
-            GreatAsLambda.Invoke("Hello World!");
+            GreatAsLambda.Invoke("Hello,World!");
 
             RandomNumberDelegate RandomDelegateAsLambda = () =>
             {
@@ -234,6 +280,20 @@
             foreach ( int element in ExNumber)
             {
                 ExeptionArray(element);
+            }
+
+            SorterEventManager Sorter = new SorterEventManager();
+            Sorter.InputEvent += SortItAsIWant;
+            while (true)
+            {
+                try
+                {
+                    Sorter.Input();
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid index,go again.");
+                }
             }
 
             Console.ReadKey();            
