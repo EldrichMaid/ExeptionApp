@@ -5,8 +5,7 @@
         public MyException()
         { }
 
-        public MyException(string message)
-            : base(message)
+        public MyException(string message): base(message)
         { }
     }
 
@@ -92,6 +91,46 @@
         public static void bl_ProcessCompleted() // перехватчик событий
         {
             Console.WriteLine("Процесс завершён!");
+        }
+
+        public static void ExeptionArray(int ExNumber)
+        {
+            try
+            {
+                Console.WriteLine("Try initiated.");
+                switch (ExNumber)
+                {
+                        case 1: throw new MyException("Custom exeption thrown.");
+                        case 2: throw new ArgumentNullException("Argument is null.");
+                        case 3: throw new FormatException("Wrong format");
+                        case 4: throw new NotSupportedException("Method or operation is not supported");
+                        case 5: throw new TimeoutException("Operation time had ran past limit");
+                }
+            }
+            catch (MyException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ArgumentNullException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (NotSupportedException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally 
+            { 
+                Console.WriteLine("Finality has occured.");
+            }
         }
 
         static void Main()
@@ -190,6 +229,12 @@
             ProcessBusinessLogic bl = new ProcessBusinessLogic();
             bl.ProcessCompleted += bl_ProcessCompleted; // регистрируем событие
             bl.StartProcess();
+
+            List<int> ExNumber = new() { 1, 2, 3, 4, 5 };
+            foreach ( int element in ExNumber)
+            {
+                ExeptionArray(element);
+            }
 
             Console.ReadKey();            
         }
